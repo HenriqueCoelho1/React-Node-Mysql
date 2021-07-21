@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RegisterScreen = () => {
+const SingleRegisterScreen = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const RegisterScreen = () => {
     )
 }
 
-export default RegisterScreen
+export default SingleRegisterScreen

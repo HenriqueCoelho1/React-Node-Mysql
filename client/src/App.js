@@ -2,7 +2,8 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header'
 import HomeScreen from './screens/HomeScreen'
-import RegisterScreen from './screens/RegisterScreen'
+import RegistersScreen from './screens/RegistersScreen'
+import SingleRegisterScreen from './screens/SingleRegisterScreen'
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/register" component={RegisterScreen} />
+        <Route path="/registros" component={RegistersScreen} />
+        <Route path="/registrar" component={SingleRegisterScreen} />
       </Switch>
     </>
   )

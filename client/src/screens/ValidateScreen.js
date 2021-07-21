@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Row, Button, Col } from 'react-bootstrap'
 import axios from 'axios'
 
-const SingleRegisterScreen = () => {
+const ValidateScreen = () => {
     const { Group, Label, Control } = Form
 
+    const [registers, setRegisters] = useState([])
 
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [cpf, setCpf] = useState("")
-    const [phone, setPhone] = useState("")
+    const [name, setName] = useState(registers.name)
+    const [email, setEmail] = useState(registers.email)
+    const [cpf, setCpf] = useState(registers.cpf)
+    const [phone, setPhone] = useState(registers.phone)
 
-
-    const submit = () => {
-        axios.post("http://localhost:2000/api/registrar", { name, email, cpf, phone })
-            .then(() => {
-                alert("Success")
-            })
-    }
-
+    useEffect(() => {
+        axios.get("http://localhost:2000/api/validar").then((response) => {
+            setRegisters(response.data)
+            console.log(response.data)
+        })
+    }, [])
 
     return (
         <Form>
             <Row className="mb-3">
                 <Group as={Col} controlId="formGridName">
                     <Label>Nome</Label>
-                    <Control type="text" placeholder="Coloque seu nome" required
-                        onChange={(e) => { setName(e.target.value) }}
+                    <Control
+                        type="text"
+                        placeholder="Coloque seu nome"
+                        required
+                        value={name}
                     />
                 </Group>
 
@@ -35,9 +37,8 @@ const SingleRegisterScreen = () => {
                     <Control type="email"
                         placeholder="Coloque seu email"
                         required
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }} />
+                        value={registers.email}
+                    />
                 </Group>
             </Row>
 
@@ -47,22 +48,24 @@ const SingleRegisterScreen = () => {
                     <Control type="text"
                         placeholder="Coloque seu CPF"
                         required
-                        onChange={(e) => { setCpf(e.target.value) }} />
+                        value={registers.cpf}
+                    />
                 </Group>
 
                 <Group as={Col} controlId="formGridPhone">
                     <Label>Telefone</Label>
                     <Control type="number"
                         placeholder="Coloque seu número"
-                        onChange={(e) => { setPhone(e.target.value) }} />
+                        value={registers.phone}
+                    />
                 </Group>
             </Row>
 
-            <Button onClick={submit} variant="primary" type="submit">
+            <Button variant="primary" type="submit">
                 Enviar
             </Button>
         </Form>
     )
 }
 
-export default SingleRegisterScreen
+export default ValidateScreen

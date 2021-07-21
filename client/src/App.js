@@ -4,6 +4,7 @@ import Header from './components/Header'
 import HomeScreen from './screens/HomeScreen'
 import RegistersScreen from './screens/RegistersScreen'
 import SingleRegisterScreen from './screens/SingleRegisterScreen'
+import ValidateScreen from './screens/ValidateScreen'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route exact path="/" component={HomeScreen} />
         <Route path="/registros" component={RegistersScreen} />
         <Route path="/registrar" component={SingleRegisterScreen} />
+        <Route path="/validar" component={ValidateScreen} />
       </Switch>
     </>
   )

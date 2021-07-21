@@ -1,22 +1,26 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 
 const RegistersScreen = () => {
-    const data = [
-        { name: 'Jeremias', email: 'jeremias@gmail.com', cpf: '0141414114', isValidated: 0 },
-        { name: 'Carlos', email: 'carlos@gmail.com', cpf: '1212121212', isValidated: 0 },
-        { name: 'Pedro', email: 'pedro@gmail.com', cpf: '3232323232', isValidated: 0 },
-        { name: 'Diogenes', email: 'dio@gmail.com', cpf: '87878787878', isValidated: 0 },
-    ]
+
+    const [registers, setRegisters] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:2000/api/registros").then((response) => {
+            setRegisters(response.data)
+        })
+    }, [])
 
 
-    const renderData = (data, index) => {
+    const renderData = (registers, index) => {
         return (
             <tr key={index}>
-                <td>{data.name}</td>
-                <td>{data.email}</td>
-                <td>{data.cpf}</td>
-                <td>{data.isValidated}</td>
+                <td>{registers.name}</td>
+                <td>{registers.email}</td>
+                <td>{registers.cpf}</td>
+                <td>{registers.phone}</td>
+                <td>{registers.isValidated}</td>
             </tr>
         )
     }
@@ -25,14 +29,15 @@ const RegistersScreen = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nome</th>
                         <th>Email</th>
                         <th>CPF</th>
+                        <th>Phone</th>
                         <th>Is Validate?</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(renderData)}
+                    {registers.map(renderData)}
                 </tbody>
             </Table>
 

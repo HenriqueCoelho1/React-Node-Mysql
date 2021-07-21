@@ -21,17 +21,32 @@ app.use(express.json())
 //         res.send("Hello World!")
 //     })
 // })
+app.get("/api/registros", (req, res) => {
+    const sqlInsert = "SELECT * FROM user"
+    db.query(sqlInsert, (err, result) => {
+        res.send(result)
+    })
+})
+
+app.get("/api/validar", (req, res) => {
+    const sqlInsert = "SELECT * FROM user WHERE id = 1"
+    db.query(sqlInsert, (err, result) => {
+        res.send(result)
+    })
+})
+
 app.post("/api/registrar", (req, res) => {
     const name = req.body.name
     const email = req.body.email
     const cpf = req.body.cpf
-    const phone = 12
+    const phone = req.body.phone
 
     const sqlInsert = "INSERT INTO user (name, email, cpf, phone) VALUES (?,?,?,?)"
     db.query(sqlInsert, [name, email, cpf, phone], (err, result) => {
-        console.log(err)
+        console.log(result)
     })
 })
+
 
 PORT = process.env.PORT || 2000
 

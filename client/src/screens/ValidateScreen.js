@@ -5,12 +5,7 @@ import axios from 'axios'
 const ValidateScreen = () => {
     const { Group, Label, Control } = Form
 
-    const [registers, setRegisters] = useState([])
 
-    const [name, setName] = useState(registers.name)
-    const [email, setEmail] = useState(registers.email)
-    const [cpf, setCpf] = useState(registers.cpf)
-    const [phone, setPhone] = useState(registers.phone)
 
     useEffect(() => {
         axios.get("http://localhost:2000/api/validar").then((response) => {
@@ -18,6 +13,15 @@ const ValidateScreen = () => {
             console.log(response.data)
         })
     }, [])
+
+    const [registers, setRegisters] = useState({})
+
+    // const [name, setName] = useState(registers.name)
+    // const [email, setEmail] = useState(registers.email)
+    // const [cpf, setCpf] = useState(registers.cpf)
+    // const [phone, setPhone] = useState(registers.phone)
+
+    console.log(registers.name)
 
     return (
         <Form>
@@ -28,7 +32,7 @@ const ValidateScreen = () => {
                         type="text"
                         placeholder="Coloque seu nome"
                         required
-                        value={name}
+                        value={registers.name}
                     />
                 </Group>
 

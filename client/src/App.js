@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen'
 import RegistersScreen from './screens/RegistersScreen'
 import SingleRegisterScreen from './screens/SingleRegisterScreen'
 import ValidateScreen from './screens/ValidateScreen'
+import LoginScreen from './screens/LoginScreen'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/registros" component={RegistersScreen} />
         <Route path="/registrar" component={SingleRegisterScreen} />
         <Route path="/validar" component={ValidateScreen} />
+        <Route path="/login" component={LoginScreen} />
       </Switch>
     </>
   )

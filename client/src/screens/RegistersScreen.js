@@ -13,9 +13,10 @@ const RegistersScreen = () => {
     }, [])
 
 
-    const renderData = (registers, index) => {
+    const renderData = (registers) => {
         return (
-            <tr key={index}>
+            <tr key={registers.id}>
+                <td>{registers.id}</td>
                 <td>{registers.name}</td>
                 <td>{registers.email}</td>
                 <td>{registers.cpf}</td>
@@ -29,11 +30,13 @@ const RegistersScreen = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nome</th>
                         <th>Email</th>
                         <th>CPF</th>
                         <th>Phone</th>
                         <th>Is Validate?</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
